@@ -1,6 +1,6 @@
 
 
-import Client from "../lib/index.js";
+import Client from 'isenjs';
 
 
 // Create the client
@@ -12,11 +12,3 @@ const client = new Client("username",
 if (!(await client.logged_in)){
     console.log("Username or password incorrect");
 }
-
-
-let classMember = await client.classMember("CIR", "2", "Caen");
-
-console.log(classMember);
-
-
-
