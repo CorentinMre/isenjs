@@ -1,6 +1,5 @@
 
-
-import Client from 'isenjs';
+const Client = require('isenjs');
 
 
 // Create the client
@@ -9,6 +8,7 @@ const client = new Client("username",
                          );
 
 //check if logged in
-if (!(await client.logged_in)){
-    console.log("Username or password incorrect");
-}
+client.logged_in.then((logged_in) => {
+    console.log(logged_in);
+});
+

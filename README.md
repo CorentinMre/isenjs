@@ -3,57 +3,55 @@
 
 <br/>
 
-
 <h2 style="font-family: sans-serif; font-weight: normal;" align="center"><strong>An API for ISEN-OUEST</strong></h2>
-
 
 <br/>
 
 <h2 style="font-family: sans-serif; font-weight: normal;" align="center"><strong>⚠️ Unofficial !!</strong></h2>
 
 ## Description
+
 A Nodejs API wrapper for ISEN-OUEST, with webAurion information like calendar, grades, absences...
 
-
 ## Usage
-
 
 - `npm install isenjs`
 
 Here is an example script with login:
 
 ```js
-import Client from "isenjs";
+const Client = require('isenjs');
 
 
 // Create the client
 const client = new Client("username", 
-                        "password"
-                        );
+                          "password"
+                         );
 
 //check if logged in
-if (!(await client.logged_in)){
-    console.log("Username or password incorrect");
-}
+client.logged_in.then((logged_in) => {
+    console.log(logged_in);
+});
 ```
 
 Here is an example script without login (just classMember for now):
 
-
 ```js
-import Client from 'isenjs';
+const Client = require('isenjs'); // Assuming the package is available as 'isenjs'
 
 // Create the client
 const client = new Client();
 
+client.classMember("CIR", "2", "Caen")
+  .then(classMember => {
+    console.log(classMember);
+  })
+  .catch(error => {
+    console.error("An error occurred:", error);
+  });
 
-let classMember = await client.classMember("CIR", "2", "Caen");
-
-console.log(classMember);
 
 ```
-
-
 
 ## LICENSE
 
