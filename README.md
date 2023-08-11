@@ -20,7 +20,7 @@ A Nodejs API wrapper for ISEN-OUEST, with webAurion information like calendar, g
 
 - `npm install isenjs`
 
-Here is an example script:
+Here is an example script with login:
 
 ```js
 import Client from "isenjs";
@@ -35,6 +35,16 @@ const client = new Client("username",
 if (!(await client.logged_in)){
     console.log("Username or password incorrect");
 }
+```
+
+Here is an example script without login (just classMember for now):
+
+
+```js
+import Client from 'isenjs';
+
+// Create the client
+const client = new Client();
 
 
 let classMember = await client.classMember("CIR", "2", "Caen");
