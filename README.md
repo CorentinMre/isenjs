@@ -55,7 +55,7 @@ const client = new Client("username",
 Here is an example script without login (just classMember for now):
 
 ```js
-const Client = require('isenjs'); // Assuming the package is available as 'isenjs'
+const Client = require('isenjs');
 
 // Create the client
 const client = new Client();
