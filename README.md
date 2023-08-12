@@ -9,6 +9,10 @@
 
 <h2 style="font-family: sans-serif; font-weight: normal;" align="center"><strong>⚠️ Unofficial !!</strong></h2>
 
+[![npm version](https://img.shields.io/npm/v/isenjs.svg?style=flat-square)](https://www.npmjs.org/package/isenjs)
+[![install size](https://img.shields.io/badge/dynamic/json?url=https://packagephobia.com/v2/api.json?p=isenjs&query=$.install.pretty&label=install%20size&style=flat-square)](https://www.npmjs.org/package/isenjs)
+
+
 ## Description
 
 A Nodejs API wrapper for ISEN-OUEST, with webAurion information like calendar, grades, absences...
@@ -28,10 +32,24 @@ const client = new Client("username",
                           "password"
                          );
 
-//check if logged in
-client.logged_in.then((logged_in) => {
-    console.log(logged_in);
-});
+(async () => {
+    try {
+
+        await client.init();
+
+        if (!client.logged_in) {
+            console.error("Login failed");
+            return;
+        }
+
+        // Get User Info
+        const userInfo = await client.userInfo();
+        console.log("User Info:", userInfo);
+
+    } catch (error) {
+        console.error("Error:", error);
+    }
+})();
 ```
 
 Here is an example script without login (just classMember for now):
@@ -49,8 +67,66 @@ client.classMember("CIR", "2", "Caen")
   .catch(error => {
     console.error("An error occurred:", error);
   });
+```
+
+Here is an example script to get absences from webAurion:
+
+```js
+const Client = require('isenjs');
 
 
+// Create the client
+const client = new Client("username", 
+                          "password"
+                         );
+(async () => {
+    try {
+
+        await client.init();
+
+        if (!client.logged_in) {
+            console.error("Login failed");
+            return;
+        }
+
+        const webAurion = await client.webAurion();
+
+        const absences = await webAurion.absences();
+        console.log("Absences:", absences);
+
+
+    } catch (error) {
+        console.error("Error:", error);
+    }
+})();
+```
+
+Here is an example script to get grades from webAurion:
+
+```js
+
+...
+
+(async () => {
+    try {
+
+        await client.init();
+
+        if (!client.logged_in) {
+            console.error("Login failed");
+            return;
+        }
+
+        const webAurion = await client.webAurion();
+
+        const grades = await webAurion.grades();
+        console.log("Grades:", grades);
+
+
+    } catch (error) {
+        console.error("Error:", error);
+    }
+})();
 ```
 
 ## LICENSE

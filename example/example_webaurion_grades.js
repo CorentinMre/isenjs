@@ -1,12 +1,10 @@
 
 const Client = require('isenjs');
 
-
 // Create the client
 const client = new Client("username", 
                           "password"
                          );
-
 (async () => {
     try {
 
@@ -17,9 +15,11 @@ const client = new Client("username",
             return;
         }
 
-        // Get User Info
-        const userInfo = await client.userInfo();
-        console.log("User Info:", userInfo);
+        const webAurion = await client.webAurion();
+
+        const grades = await webAurion.grades();
+        console.log("Grades:", grades);
+
 
     } catch (error) {
         console.error("Error:", error);
