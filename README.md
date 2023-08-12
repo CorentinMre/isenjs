@@ -21,7 +21,7 @@ A Nodejs API wrapper for ISEN-OUEST, with webAurion information like calendar, g
 
 - `npm install isenjs`
 
-Here is an example script with login:
+## Here is an example script with login:
 
 ```js
 const Client = require('isenjs');
@@ -52,7 +52,7 @@ const client = new Client("username",
 })();
 ```
 
-Here is an example script without login (just classMember for now):
+## Here is an example script without login (just classMember for now):
 
 ```js
 const Client = require('isenjs'); // Assuming the package is available as 'isenjs'
@@ -85,15 +85,12 @@ const client = new Client();
 //   });
 ```
 
-Here is an example script to get absences from webAurion:
+## Here is an example script to get absences from webAurion:
 
 ```js
-const Client = require('isenjs');
 
-// Create the client
-const client = new Client("username", 
-                          "password"
-                         );
+...
+
 (async () => {
     try {
 
@@ -117,7 +114,7 @@ const client = new Client("username",
 })();
 ```
 
-Here is an example script to get grades from webAurion:
+## Here is an example script to get grades from webAurion:
 
 ```js
 
@@ -146,7 +143,7 @@ Here is an example script to get grades from webAurion:
 })();
 ```
 
-Here is an example to get planning from webAurion
+## Here is an example to get planning from webAurion
 
 ```js
 
@@ -171,6 +168,68 @@ Here is an example to get planning from webAurion
 
         console.log(planning);
         //console.log(planning.toJSON()); // to have the Object
+
+
+    } catch (error) {
+        console.error("Error:", error);
+    }
+})();
+```
+
+## Example for get your school report
+
+```js
+
+...
+
+(async () => {
+    try {
+
+        await client.init();
+
+        if (!client.logged_in) {
+            console.error("Login failed");
+            return;
+        }
+
+        const webAurion = await client.webAurion();
+
+        const schoolReport = await webAurion.getSchoolReport();
+
+        console.log(schoolReport);
+        //console.log(schoolReport.toJSON()); // to have the Object
+
+
+    } catch (error) {
+        console.error("Error:", error);
+    }
+})();
+```
+
+## Example for download your school report
+
+```js
+
+...
+
+(async () => {
+    try {
+
+        await client.init();
+
+        if (!client.logged_in) {
+            console.error("Login failed");
+            return;
+        }
+
+        const webAurion = await client.webAurion();
+
+        await webAurion.downloadReport() // Download all your school report with the default name
+
+        // if you want only one report
+
+        // webAurion.downloadReport(null, "report_id") 
+        // Download the report with the id "report_id" with the default name (you have the id with the schoolReport object Ex. schoolReport = webAurion.getSchoolReport() ) 
 
 
     } catch (error) {

@@ -1,6 +1,6 @@
 {
   "name": "isenjs",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A Nodejs API wrapper for ISEN-OUEST, with webAurion information like calendar, grades, absences...",
   "main": "./lib/index.js",
   "files": [
