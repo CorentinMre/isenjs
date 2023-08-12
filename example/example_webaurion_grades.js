@@ -18,7 +18,8 @@ const client = new Client("username",
         const webAurion = await client.webAurion();
 
         const grades = await webAurion.grades();
-        console.log("Grades:", grades);
+        console.log(grades);
+        // console.log(grades.toJSEON()); // to have the Object
 
 
     } catch (error) {

@@ -17,9 +17,13 @@ const client = new Client("username",
 
         const webAurion = await client.webAurion();
 
-        const absences = await webAurion.absences();
-        console.log(absences);
-        // console.log(absences.toJSON()); // to have the Object
+        // params: start_date : (str, optional) , end_date : (str, optional) 
+        // format (Ex. "12-08-2023")
+        // default : the current week
+        const planning = await webAurion.planning();
+
+        console.log(planning);
+        //console.log(planning.toJSON()); // to have the Object
 
 
     } catch (error) {

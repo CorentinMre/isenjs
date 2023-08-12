@@ -55,25 +55,40 @@ const client = new Client("username",
 Here is an example script without login (just classMember for now):
 
 ```js
-const Client = require('isenjs');
+const Client = require('isenjs'); // Assuming the package is available as 'isenjs'
 
 // Create the client
 const client = new Client();
 
-client.classMember("CIR", "2", "Caen")
-  .then(classMember => {
-    console.log(classMember);
-  })
-  .catch(error => {
-    console.error("An error occurred:", error);
-  });
+(async () => {
+    try {
+
+        const classMember = await client.classMember("CIR", "2", "Caen")
+
+        console.log(classMember);
+        // console.log(classMember.toJSON()); // to have the Object
+
+  } catch (error) {
+        console.error("Error:", error);
+  }
+})();
+
+
+// OR symply
+// client.classMember("CIR", "2", "Caen")
+//   .then(classMember => {
+//     console.log(classMember);
+//      // console.log(classMember.toJSON()); to have the Object
+//   })
+//   .catch(error => {
+//     console.error("An error occurred:", error);
+//   });
 ```
 
 Here is an example script to get absences from webAurion:
 
 ```js
 const Client = require('isenjs');
-
 
 // Create the client
 const client = new Client("username", 
@@ -92,7 +107,8 @@ const client = new Client("username",
         const webAurion = await client.webAurion();
 
         const absences = await webAurion.absences();
-        console.log("Absences:", absences);
+        console.log(absences);
+        // console.log(absences.toJSON()); // to have the Object
 
 
     } catch (error) {
@@ -120,7 +136,41 @@ Here is an example script to get grades from webAurion:
         const webAurion = await client.webAurion();
 
         const grades = await webAurion.grades();
-        console.log("Grades:", grades);
+        console.log(grades);
+        // console.log(grades.toJSEON()); // to have the Object
+
+
+    } catch (error) {
+        console.error("Error:", error);
+    }
+})();
+```
+
+Here is an example to get planning from webAurion
+
+```js
+
+...
+
+(async () => {
+    try {
+
+        await client.init();
+
+        if (!client.logged_in) {
+            console.error("Login failed");
+            return;
+        }
+
+        const webAurion = await client.webAurion();
+
+        // params: start_date : (str, optional) , end_date : (str, optional) 
+        // format (Ex. "12-08-2023")
+        // default : the current week
+        const planning = await webAurion.planning();
+
+        console.log(planning);
+        //console.log(planning.toJSON()); // to have the Object
 
 
     } catch (error) {
