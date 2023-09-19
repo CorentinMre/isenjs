@@ -28,8 +28,8 @@ const Client = require('isenjs');
 
 
 // Create the client
-const client = new Client("username", 
-                          "password"
+const client = new Client("<username>", 
+                          "<password>"
                          );
 
 (async () => {
@@ -165,6 +165,38 @@ const client = new Client();
         // format (Ex. "12-08-2023")
         // default : the current week
         const planning = await webAurion.planning();
+
+        console.log(planning);
+        //console.log(planning.toJSON()); // to have the Object
+
+
+    } catch (error) {
+        console.error("Error:", error);
+    }
+})();
+```
+
+## Here is an other example if you want group schedule
+```js
+
+...
+
+(async () => {
+    try {
+
+        await client.init();
+
+        if (!client.logged_in) {
+            console.error("Login failed");
+            return;
+        }
+
+        const webAurion = await client.webAurion();
+
+        // params: cycle : str , year : str, city: str, start_date : (str, optional) , end_date : (str, optional) 
+        // format (Ex. "12-08-2023")
+        // default : the current week
+        const groupPlanning = await webAurion.groupPlanning("CIR", "2", "Caen", "16-08-2023", "16-05-2024");
 
         console.log(planning);
         //console.log(planning.toJSON()); // to have the Object

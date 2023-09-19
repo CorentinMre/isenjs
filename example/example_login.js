@@ -3,8 +3,8 @@ const Client = require('isenjs');
 
 
 // Create the client
-const client = new Client("username", 
-                          "password"
+const client = new Client("<username>", 
+                          "<password>"
                          );
 
 (async () => {

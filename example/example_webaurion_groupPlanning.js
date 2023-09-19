@@ -17,12 +17,12 @@ const client = new Client("<username>",
 
         const webAurion = await client.webAurion();
 
-        // params: start_date : (str, optional) , end_date : (str, optional) 
+        // params: cycle : str , year : str, city: str, start_date : (str, optional) , end_date : (str, optional) 
         // format (Ex. "12-08-2023")
         // default : the current week
-        const planning = await webAurion.planning();
+        const groupPlanning = await webAurion.groupPlanning("CIR", "2", "Caen", "16-08-2023", "16-05-2024");
 
-        console.log(planning);
+        console.log(groupPlanning);
         //console.log(planning.toJSON()); // to have the Object
 
 
