@@ -199,7 +199,39 @@ const client = new Client();
         const groupPlanning = await webAurion.groupPlanning("CIR", "2", "Caen", "16-08-2023", "16-05-2024");
 
         console.log(planning);
-        //console.log(planning.toJSON()); // to have the Object
+        //console.log(groupPlanning.toJSON()); // to have the Object
+
+
+    } catch (error) {
+        console.error("Error:", error);
+    }
+})();
+```
+
+## Here is an other example if you want room schedule
+```js
+
+...
+
+(async () => {
+    try {
+
+        await client.init();
+
+        if (!client.logged_in) {
+            console.error("Login failed");
+            return;
+        }
+
+        const webAurion = await client.webAurion();
+
+        // params: city: str, start_date : (str, optional) , end_date : (str, optional) 
+        // format (Ex. "12-08-2023")
+        // default : the current week
+        const roomPlanning = await webAurion.roomPlanning("Caen", "16-08-2023", "16-05-2024");
+
+        console.log(roomPlanning);
+        //console.log(roomPlanning.toJSON()); // to have the Object
 
 
     } catch (error) {
