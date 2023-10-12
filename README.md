@@ -35,9 +35,8 @@ const client = new Client("<username>",
 (async () => {
     try {
 
-        await client.init();
-
-        if (!client.logged_in) {
+        const logged_in = await client.logged_in; // don't this line for login the user
+        if (!logged_in) {
             console.error("Login failed");
             return;
         }
@@ -94,9 +93,8 @@ const client = new Client();
 (async () => {
     try {
 
-        await client.init();
-
-        if (!client.logged_in) {
+        const logged_in = await client.logged_in; // don't this line for login the user
+        if (!logged_in) {
             console.error("Login failed");
             return;
         }
@@ -123,9 +121,8 @@ const client = new Client();
 (async () => {
     try {
 
-        await client.init();
-
-        if (!client.logged_in) {
+        const logged_in = await client.logged_in; // don't this line for login the user
+        if (!logged_in) {
             console.error("Login failed");
             return;
         }
@@ -152,9 +149,8 @@ const client = new Client();
 (async () => {
     try {
 
-        await client.init();
-
-        if (!client.logged_in) {
+        const logged_in = await client.logged_in; // don't this line for login the user
+        if (!logged_in) {
             console.error("Login failed");
             return;
         }
@@ -184,9 +180,8 @@ const client = new Client();
 (async () => {
     try {
 
-        await client.init();
-
-        if (!client.logged_in) {
+        const logged_in = await client.logged_in; // don't this line for login the user
+        if (!logged_in) {
             console.error("Login failed");
             return;
         }
@@ -216,9 +211,8 @@ const client = new Client();
 (async () => {
     try {
 
-        await client.init();
-
-        if (!client.logged_in) {
+        const logged_in = await client.logged_in; // don't this line for login the user
+        if (!logged_in) {
             console.error("Login failed");
             return;
         }
@@ -249,9 +243,8 @@ const client = new Client();
 (async () => {
     try {
 
-        await client.init();
-
-        if (!client.logged_in) {
+        const logged_in = await client.logged_in; // don't this line for login the user
+        if (!logged_in) {
             console.error("Login failed");
             return;
         }
@@ -279,9 +272,8 @@ const client = new Client();
 (async () => {
     try {
 
-        await client.init();
-
-        if (!client.logged_in) {
+        const logged_in = await client.logged_in; // don't this line for login the user
+        if (!logged_in) {
             console.error("Login failed");
             return;
         }
