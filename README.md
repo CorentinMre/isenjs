@@ -24,11 +24,11 @@ A Nodejs API wrapper for ISEN-OUEST, with webAurion information like calendar, g
 ## Here is an example script with login:
 
 ```js
-const Client = require('isenjs');
+const { Client } = require('isenjs');
 
 
 // Create the client
-const client = new Client("<username>", 
+const client = new Client("<username>",
                           "<password>"
                          );
 
@@ -54,7 +54,7 @@ const client = new Client("<username>",
 ## Here is an example script without login (just classMember for now):
 
 ```js
-const Client = require('isenjs'); // Assuming the package is available as 'isenjs'
+const { Client } = require('isenjs'); // Assuming the package is available as 'isenjs'
 
 // Create the client
 const client = new Client();
@@ -87,8 +87,10 @@ const client = new Client();
 ## Here is an example script to get absences from webAurion:
 
 ```js
+const { WebAurion } = require('isenjs'); // don't forget to import WebAurion
 
-...
+const client = new WebAurion("<username>",
+                          "<password>");
 
 (async () => {
     try {
@@ -99,9 +101,7 @@ const client = new Client();
             return;
         }
 
-        const webAurion = await client.webAurion();
-
-        const absences = await webAurion.absences();
+        const absences = await client.absences();
         console.log(absences);
         // console.log(absences.toJSON()); // to have the Object
 
@@ -116,7 +116,10 @@ const client = new Client();
 
 ```js
 
-...
+const { WebAurion } = require('isenjs'); // don't forget to import WebAurion
+
+const client = new WebAurion("<username>",
+                          "<password>");
 
 (async () => {
     try {
@@ -127,9 +130,7 @@ const client = new Client();
             return;
         }
 
-        const webAurion = await client.webAurion();
-
-        const grades = await webAurion.grades();
+        const grades = await client.grades();
         console.log(grades);
         // console.log(grades.toJSEON()); // to have the Object
 
@@ -144,7 +145,10 @@ const client = new Client();
 
 ```js
 
-...
+const { WebAurion } = require('isenjs'); // don't forget to import WebAurion
+
+const client = new WebAurion("<username>",
+                          "<password>");
 
 (async () => {
     try {
@@ -155,12 +159,10 @@ const client = new Client();
             return;
         }
 
-        const webAurion = await client.webAurion();
-
-        // params: start_date : (str, optional) , end_date : (str, optional) 
+        // params: start_date : (str, optional) , end_date : (str, optional)
         // format (Ex. "12-08-2023")
         // default : the current week
-        const planning = await webAurion.planning();
+        const planning = await client.planning();
 
         console.log(planning);
         //console.log(planning.toJSON()); // to have the Object
@@ -175,7 +177,10 @@ const client = new Client();
 ## Here is an other example if you want group schedule
 ```js
 
-...
+const { WebAurion } = require('isenjs'); // don't forget to import WebAurion
+
+const client = new WebAurion("<username>",
+                          "<password>");
 
 (async () => {
     try {
@@ -186,12 +191,10 @@ const client = new Client();
             return;
         }
 
-        const webAurion = await client.webAurion();
-
-        // params: cycle : str , year : str, city: str, start_date : (str, optional) , end_date : (str, optional) 
+        // params: cycle : str , year : str, city: str, start_date : (str, optional) , end_date : (str, optional)
         // format (Ex. "12-08-2023")
         // default : the current week
-        const groupPlanning = await webAurion.groupPlanning("CIR", "2", "Caen", "16-08-2023", "16-05-2024");
+        const groupPlanning = await client.groupPlanning("CIR", "2", "Caen", "16-08-2023", "16-05-2024");
 
         console.log(planning);
         //console.log(groupPlanning.toJSON()); // to have the Object
@@ -206,7 +209,10 @@ const client = new Client();
 ## Here is an other example if you want room schedule
 ```js
 
-...
+const { WebAurion } = require('isenjs'); // don't forget to import WebAurion
+
+const client = new WebAurion("<username>",
+                          "<password>");
 
 (async () => {
     try {
@@ -217,12 +223,11 @@ const client = new Client();
             return;
         }
 
-        const webAurion = await client.webAurion();
 
-        // params: city: str, start_date : (str, optional) , end_date : (str, optional) 
+        // params: city: str, start_date : (str, optional) , end_date : (str, optional)
         // format (Ex. "12-08-2023")
         // default : the current week
-        const roomPlanning = await webAurion.roomPlanning("Caen", "16-08-2023", "16-05-2024");
+        const roomPlanning = await client.roomPlanning("Caen", "16-08-2023", "16-05-2024");
 
         console.log(roomPlanning);
         //console.log(roomPlanning.toJSON()); // to have the Object
@@ -238,7 +243,10 @@ const client = new Client();
 
 ```js
 
-...
+const { WebAurion } = require('isenjs'); // don't forget to import WebAurion
+
+const client = new WebAurion("<username>",
+                          "<password>");
 
 (async () => {
     try {
@@ -249,9 +257,7 @@ const client = new Client();
             return;
         }
 
-        const webAurion = await client.webAurion();
-
-        const schoolReport = await webAurion.getSchoolReport();
+        const schoolReport = await client.getSchoolReport();
 
         console.log(schoolReport);
         //console.log(schoolReport.toJSON()); // to have the Object
@@ -267,7 +273,10 @@ const client = new Client();
 
 ```js
 
-...
+const { WebAurion } = require('isenjs'); // don't forget to import WebAurion
+
+const client = new WebAurion("<username>",
+                          "<password>");
 
 (async () => {
     try {
@@ -278,14 +287,12 @@ const client = new Client();
             return;
         }
 
-        const webAurion = await client.webAurion();
-
-        await webAurion.downloadReport() // Download all your school report with the default name
+        await client.downloadReport() // Download all your school report with the default name
 
         // if you want only one report
 
-        // webAurion.downloadReport(null, "report_id") 
-        // Download the report with the id "report_id" with the default name (you have the id with the schoolReport object Ex. schoolReport = webAurion.getSchoolReport() ) 
+        // client.downloadReport(null, "report_id")
+        // Download the report with the id "report_id" with the default name (you have the id with the schoolReport object Ex. schoolReport = webAurion.getSchoolReport() )
 
 
     } catch (error) {

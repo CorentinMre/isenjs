@@ -1,7 +1,7 @@
-const Client = require("isenjs");
+const { WebAurion } = require("isenjs");
 
 // Create the client
-const client = new Client("<username>", "<password>");
+const client = new WebAurion("<username>", "<password>");
 (async () => {
   try {
     const logged_in = await client.logged_in; // don't this line for login the user
@@ -10,9 +10,7 @@ const client = new Client("<username>", "<password>");
       return;
     }
 
-    const webAurion = await client.webAurion();
-
-    const schoolReport = await webAurion.getSchoolReport();
+    const schoolReport = await client.getSchoolReport();
 
     console.log(schoolReport);
     //console.log(schoolReport.toJSON()); // to have the Object

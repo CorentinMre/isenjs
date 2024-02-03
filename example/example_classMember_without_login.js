@@ -1,4 +1,4 @@
-const Client = require("isenjs");
+const { Client } = require("isenjs");
 
 // Create the client
 const client = new Client();
