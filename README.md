@@ -24,19 +24,20 @@ A Nodejs API wrapper for ISEN-OUEST, with webAurion information like calendar, g
 ## Here is an example script with login:
 
 ```js
-const { Client } = require('isenjs');
+const { WebAurion } = require('isenjs');
 
 
 // Create the client
-const client = new Client("<username>",
-                          "<password>"
-                         );
+const client = new WebAurion();
 
 (async () => {
     try {
 
-        const logged_in = await client.logged_in; // don't this line for login the user
-        if (!logged_in) {
+        await client.login("<username>",
+                          "<password>");
+
+        
+        if (!client.logged_in) {
             console.error("Login failed");
             return;
         }
@@ -56,19 +57,20 @@ const client = new Client("<username>",
 ```js
 const { WebAurion } = require('isenjs'); // don't forget to import WebAurion
 
-const client = new WebAurion("<username>",
-                          "<password>");
+const client = new WebAurion();
 
 (async () => {
     try {
 
-        const logged_in = await client.logged_in; // don't this line for login the user
-        if (!logged_in) {
+        await client.login("<username>",
+                          "<password>");
+
+        if (!clientlogged_in) {
             console.error("Login failed");
             return;
         }
 
-        const absences = await client.absences();
+        const absences = await client.getAbsences();
         console.log(absences);
         // console.log(absences.toJSON()); // to have the Object
 
@@ -85,21 +87,24 @@ const client = new WebAurion("<username>",
 
 const { WebAurion } = require('isenjs'); // don't forget to import WebAurion
 
-const client = new WebAurion("<username>",
-                          "<password>");
+const client = new WebAurion();
+
 
 (async () => {
     try {
 
-        const logged_in = await client.logged_in; // don't this line for login the user
-        if (!logged_in) {
+        await client.login("<username>",
+                          "<password>");
+
+        
+        if (!client.logged_in) {
             console.error("Login failed");
             return;
         }
 
-        const grades = await client.grades();
+        const grades = await client.getGrades();
         console.log(grades);
-        // console.log(grades.toJSEON()); // to have the Object
+        // console.log(grades.toJSON()); // to have the Object
 
 
     } catch (error) {
@@ -114,22 +119,21 @@ const client = new WebAurion("<username>",
 
 const { WebAurion } = require('isenjs'); // don't forget to import WebAurion
 
-const client = new WebAurion("<username>",
-                          "<password>");
+const client = new WebAurion();
 
 (async () => {
     try {
 
-        const logged_in = await client.logged_in; // don't this line for login the user
-        if (!logged_in) {
+        await client.login("<username>",
+                          "<password>");
+
+        
+        if (!client.logged_in) {
             console.error("Login failed");
             return;
         }
 
-        // params: start_date : (str, optional) , end_date : (str, optional)
-        // format (Ex. "12-08-2023")
-        // default : the current week
-        const planning = await client.planning();
+        const planning = await client.getPlanning();
 
         console.log(planning);
         //console.log(planning.toJSON()); // to have the Object
@@ -141,70 +145,6 @@ const client = new WebAurion("<username>",
 })();
 ```
 
-## Here is an other example if you want group schedule
-```js
-
-const { WebAurion } = require('isenjs'); // don't forget to import WebAurion
-
-const client = new WebAurion("<username>",
-                          "<password>");
-
-(async () => {
-    try {
-
-        const logged_in = await client.logged_in; // don't this line for login the user
-        if (!logged_in) {
-            console.error("Login failed");
-            return;
-        }
-
-        // params: cycle : str , year : str, city: str, start_date : (str, optional) , end_date : (str, optional)
-        // format (Ex. "12-08-2023")
-        // default : the current week
-        const groupPlanning = await client.groupPlanning("CIR", "2", "Caen", "16-08-2023", "16-05-2024");
-
-        console.log(planning);
-        //console.log(groupPlanning.toJSON()); // to have the Object
-
-
-    } catch (error) {
-        console.error("Error:", error);
-    }
-})();
-```
-
-## Here is an other example if you want room schedule
-```js
-
-const { WebAurion } = require('isenjs'); // don't forget to import WebAurion
-
-const client = new WebAurion("<username>",
-                          "<password>");
-
-(async () => {
-    try {
-
-        const logged_in = await client.logged_in; // don't this line for login the user
-        if (!logged_in) {
-            console.error("Login failed");
-            return;
-        }
-
-
-        // params: city: str, start_date : (str, optional) , end_date : (str, optional)
-        // format (Ex. "12-08-2023")
-        // default : the current week
-        const roomPlanning = await client.roomPlanning("Caen", "16-08-2023", "16-05-2024");
-
-        console.log(roomPlanning);
-        //console.log(roomPlanning.toJSON()); // to have the Object
-
-
-    } catch (error) {
-        console.error("Error:", error);
-    }
-})();
-```
 
 ## Example for get your school report
 
@@ -212,14 +152,16 @@ const client = new WebAurion("<username>",
 
 const { WebAurion } = require('isenjs'); // don't forget to import WebAurion
 
-const client = new WebAurion("<username>",
-                          "<password>");
+const client = new WebAurion();
 
 (async () => {
     try {
 
-        const logged_in = await client.logged_in; // don't this line for login the user
-        if (!logged_in) {
+        await client.login("<username>",
+                          "<password>");
+
+        
+        if (!client.logged_in) {
             console.error("Login failed");
             return;
         }
@@ -242,14 +184,15 @@ const client = new WebAurion("<username>",
 
 const { WebAurion } = require('isenjs'); // don't forget to import WebAurion
 
-const client = new WebAurion("<username>",
-                          "<password>");
+const client = new WebAurion();
 
 (async () => {
     try {
 
-        const logged_in = await client.logged_in; // don't this line for login the user
-        if (!logged_in) {
+        await client.login("<username>",
+                          "<password>");
+
+        if (!client.logged_in) {
             console.error("Login failed");
             return;
         }

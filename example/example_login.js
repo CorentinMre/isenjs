@@ -1,12 +1,14 @@
-const { Client } = require("isenjs");
+const { WebAurion } = require("isenjs");
 
 // Create the client
-const client = new Client("<username>", "<password>");
+const client = new Client();
 
 (async () => {
   try {
-    const logged_in = await client.logged_in; // don't this line for login the user
-    if (!logged_in) {
+  
+    await client.login("<username>", "<password>");
+
+    if (!client.logged_in) {
       console.error("Login failed");
       return;
     }
