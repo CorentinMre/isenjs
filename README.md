@@ -35,7 +35,7 @@ const client = new Client("<username>",
 (async () => {
     try {
 
-        const logged_in = await client.logged_in; // don't this line for login the user
+        const logged_in = await client.logged_in; // don't forget to put this line to log in the user
         if (!logged_in) {
             console.error("Login failed");
             return;
